@@ -16,4 +16,9 @@ public interface ProductService {
      * @throws Exception
      */
     List<Product> findAll() throws Exception;
+
+    /**
+     * 保存一条产品信息
+     */
+    void save(Product product);
 }

@@ -20,8 +20,15 @@ public class ProductServiceimpl implements ProductService {
     //注入dao
     @Autowired
     private ProductDao productDao;
+
     @Override
     public List<Product> findAll() throws Exception {
         return productDao.findAll();
+    }
+
+
+    @Override
+    public void save(Product product) {
+        productDao.save(product);
     }
 }

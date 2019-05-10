@@ -3,7 +3,8 @@
 <body>
 <h2>Hello World!</h2>
 
-<a href="/product/findAll.do">查询所有</a>
+<%--<a href="/product/findAll.do">查询所有</a>--%>
+<jsp:forward page="pages/main.jsp"></jsp:forward>
 
 </body>
 </html>

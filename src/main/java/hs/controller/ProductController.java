@@ -29,4 +29,16 @@ public class ProductController {
         return mv;
 
     }
+
+    /**
+     * 保存一条产品信息  DateTimeFormat 对日期格式进行了转化
+     * @return
+     */
+    @RequestMapping("/save.do")
+    public String save(Product product){
+        service.save(product);
+        return "redirect:/product/findAll.do";
+
+
+    }
 }
