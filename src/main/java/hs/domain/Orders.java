@@ -11,19 +11,19 @@ import java.util.List;
  * @Version 1.0
  */
 public class Orders {
-    private String id;
-    private String orderNum;
-    private Date orderTime;
+    private String id;                  //订单id
+    private String orderNum;            //订单彪悍
+    private Date orderTime;             //下单时间
     private String orderTimeStr;
-    private int orderStatus;
+    private int orderStatus;            //订单的状态
     private String orderStatusStr;
-    private int peopleCount;
-    private Product product;
-    private List<Traveller> travellers;
-    private Member member;
-    private Integer payType;
+    private int peopleCount;            //旅游人数信息
+    private Product product;            //订单包含的茶品信息  一个订单只包含一个产品  一对一
+    private List<Traveller> travellers; //订单包含的游客信息 指未登录的
+    private Member member;              //订单包含的会员信息
+    private Integer payType;            //支付方式
     private String payTypeStr;
-    private String orderDesc;
+    private String orderDesc;           //订单描述
 
     public String getOrderStatusStr() {
         //订单状态(0 未支付 1 已支付)

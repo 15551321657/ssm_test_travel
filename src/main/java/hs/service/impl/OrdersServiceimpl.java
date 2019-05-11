@@ -40,4 +40,14 @@ public class OrdersServiceimpl implements OrdersService {
         PageHelper.startPage(page, pageSize);
         return ordersDao.findAll();
     }
+
+    /**
+     *
+     * @param id 订单id
+     * @return
+     */
+    @Override
+    public Orders findById(String id) {
+        return ordersDao.findById(id);
+    }
 }

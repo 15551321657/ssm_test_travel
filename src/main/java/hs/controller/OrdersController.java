@@ -55,4 +55,23 @@ public class OrdersController {
 
         return mv;
     }
+
+    /**
+     * 根据订单id 查询订单详情
+     * @return
+     */
+    @RequestMapping("findById.do")
+    public ModelAndView findById(@RequestParam(name = "id",required = true) String id){
+        ModelAndView mv=new ModelAndView();
+        Orders orders=ordersService.findById(id);
+        mv.addObject("orders",orders);
+        mv.setViewName("orders-show");
+        return mv;
+
+    }
+
+
+
+
+
 }
