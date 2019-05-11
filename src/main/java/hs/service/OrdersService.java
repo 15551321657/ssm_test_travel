@@ -15,4 +15,5 @@ public interface OrdersService {
      * @return
      */
     List<Orders> findAll() throws Exception;
+    List<Orders> findByPage(Integer page,Integer pageSize) throws Exception;
 }

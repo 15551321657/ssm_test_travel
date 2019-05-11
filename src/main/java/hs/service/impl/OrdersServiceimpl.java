@@ -1,5 +1,6 @@
 package hs.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import hs.dao.OrdersDao;
 import hs.domain.Orders;
 import hs.service.OrdersService;
@@ -24,6 +25,19 @@ public class OrdersServiceimpl implements OrdersService {
 
     @Override
     public List<Orders> findAll() throws Exception {
+        return ordersDao.findAll();
+    }
+
+    /**
+     * 分页查询所有数据
+     * @param page
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Orders> findByPage(Integer page, Integer pageSize) throws Exception {
+        PageHelper.startPage(page, pageSize);
         return ordersDao.findAll();
     }
 }
