@@ -1,5 +1,6 @@
 package hs.dao;
 
+import hs.domain.Role;
 import hs.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -58,4 +59,12 @@ public interface UserDao {
             @Result(column = "status", property = "status"),
             @Result(column = "id", property = "roles", javaType = List.class, many = @Many(select = "hs.dao.RoleDao.findRoleByUserId")) })
     UserInfo findById(String id) throws Exception;
+
+    /**
+     * 根据用户id 查询出该用户所没有的角色信息
+     * @param id
+     * @return
+     */
+    @Select("select * from role where id not in( select roleId from users_role where userId=#{id})")
+    List<Role> findOthersRolesByUid(String id);
 }

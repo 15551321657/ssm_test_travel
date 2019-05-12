@@ -84,4 +84,9 @@ public class UserServiceimpl implements UserService {
     public UserInfo findById(String id) throws Exception {
         return userDao.findById(id);
     }
+
+    @Override
+    public List<Role> findOthersRolesByUid(String id) throws Exception {
+        return userDao.findOthersRolesByUid(id);
+    }
 }

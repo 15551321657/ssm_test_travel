@@ -1,5 +1,6 @@
 package hs.service;
 
+import hs.domain.Role;
 import hs.domain.UserInfo;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -30,4 +31,6 @@ public interface UserService extends UserDetailsService {
      * @return
      */
     UserInfo findById(String id) throws Exception;
+
+    List<Role> findOthersRolesByUid(String id) throws Exception;
 }

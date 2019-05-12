@@ -1,10 +1,12 @@
 package hs.controller;
 
+import hs.domain.Role;
 import hs.domain.UserInfo;
 import hs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -52,6 +54,24 @@ public class UserController {
         mv.addObject("user",userInfo);
         mv.setViewName("user-show1");
 
+        return mv;
+
+    }
+
+    /**
+     * 用户详情界面 跳转到给给用户添加角色信息的页面 user_role_add
+     * @return
+     */
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required=true) String id) throws Exception {
+        ModelAndView mv=new ModelAndView();
+        // 1 根据用户id 查询用户信息
+        UserInfo userInfo = userService.findById(id);
+        // 2 根据用户id 查询出该用户所没有的角色信息
+        List<Role> roleList=userService.findOthersRolesByUid(id);
+        mv.addObject("user",userInfo);
+        mv.addObject("roleList",roleList);
+        mv.setViewName("user-role-add");
         return mv;
 
     }
