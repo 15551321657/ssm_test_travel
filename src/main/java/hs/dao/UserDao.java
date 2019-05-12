@@ -1,11 +1,10 @@
 package hs.dao;
 
 import hs.domain.UserInfo;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Author: huangshun
@@ -15,6 +14,12 @@ import org.springframework.stereotype.Repository;
 @Repository()
 public interface UserDao {
 
+    /**
+     * 根据用户名查询用户
+     * @param username
+     * @return
+     * @throws Exception
+     */
     // 同时也要查询出 用户所拥有的角色
     @Select("select * from users where username= #{username}")
     @Results({
@@ -27,4 +32,14 @@ public interface UserDao {
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "hs.dao.RoleDao.findRoleByUserId"))
     })
     public UserInfo findByUserName(String username) throws Exception;
+
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    @Select("select * from users")
+    List<UserInfo> findAll();
+
+    @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
+    void save(UserInfo userInfo) throws Exception;
 }

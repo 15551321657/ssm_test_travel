@@ -3,6 +3,8 @@ package hs.domain;
 import java.util.List;
 
 //与数据库中users对应
+
+//与数据库中users对应
 public class UserInfo {
     private String id;
     private String username;
@@ -10,8 +12,8 @@ public class UserInfo {
     private String password;
     private String phoneNum;
     private int status;
-    private String statusStr;   //状态
-    private List<Role> roles;   //用户所拥有的角色
+    private String statusStr;
+    private List<Role> roles;
 
     public String getId() {
         return id;
@@ -62,6 +64,12 @@ public class UserInfo {
     }
 
     public String getStatusStr() {
+        //状态0 未开启 1 开启
+        if (status == 0) {
+            statusStr = "未开启";
+        } else if (status == 1) {
+            statusStr = "开启";
+        }
         return statusStr;
     }
 

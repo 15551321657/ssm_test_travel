@@ -1,6 +1,9 @@
 package hs.service;
 
+import hs.domain.UserInfo;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import java.util.List;
 
 /**
  * @Author: huangshun
@@ -8,4 +11,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @Version 1.0
  */
 public interface UserService extends UserDetailsService {
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    List<UserInfo> findAll();
+
+    /**
+     * 添加一个用户信息
+     * @param userInfo
+     * @throws Exception
+     */
+    void save(UserInfo userInfo) throws Exception;
 }
