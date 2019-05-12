@@ -1,5 +1,6 @@
 package hs.dao;
 
+import hs.domain.Permission;
 import hs.domain.Role;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -41,4 +42,28 @@ public interface RoleDao {
      */
     @Insert("insert into role(roleName,roleDesc) values(#{roleName},#{roleDesc})")
     void save(Role role) throws Exception;
+
+    /**
+     *根据角色id 查询角色信息
+     * @param roleId
+     * @return
+     */
+    @Select("select * from role where id=#{roleId}")
+    Role findRoleById(String roleId);
+
+    /**
+     * 根据角色id 查询该角色没有的权限信息
+     * @param roleId
+     * @return
+     */
+    @Select("select * from permission where id not in (select permissionId from role_permission where roleId=#{roleId})")
+    List<Permission> findOthersPermission(String roleId);
+
+    /**
+     * 给角色添加权限信息
+     * @param roleId
+     * @param s
+     */
+    @Insert("insert into role_permission (roleId,permissionId) values (#{roleId},#{permissionId})")
+    void addPermissionToRole(@Param("roleId") String roleId, @Param("permissionId") String s) throws Exception;
 }

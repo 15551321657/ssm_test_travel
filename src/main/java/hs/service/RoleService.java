@@ -1,5 +1,6 @@
 package hs.service;
 
+import hs.domain.Permission;
 import hs.domain.Role;
 
 import java.util.List;
@@ -17,4 +18,10 @@ public interface RoleService {
      * @param role
      */
     void save(Role role) throws Exception;
+
+    Role findRoleById(String roleId) throws Exception;
+
+    List<Permission> findOthersPermission(String roleId) throws Exception;
+
+    void addPermissionToRole(String roleId, String[] permissionId) throws Exception;
 }

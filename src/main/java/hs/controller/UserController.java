@@ -76,4 +76,10 @@ public class UserController {
 
     }
 
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name = "userId",required = true) String userId, @RequestParam(name = "ids",required = true) String[] roleId) throws Exception {
+        userService.addRoleToUser(userId,roleId);
+        return "redirect:/user/findAll.do";
+    }
+
 }

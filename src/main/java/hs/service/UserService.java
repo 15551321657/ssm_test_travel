@@ -33,4 +33,6 @@ public interface UserService extends UserDetailsService {
     UserInfo findById(String id) throws Exception;
 
     List<Role> findOthersRolesByUid(String id) throws Exception;
+
+    void addRoleToUser(String userId, String[] roleId) throws Exception;
 }

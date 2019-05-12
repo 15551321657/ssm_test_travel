@@ -89,4 +89,16 @@ public class UserServiceimpl implements UserService {
     public List<Role> findOthersRolesByUid(String id) throws Exception {
         return userDao.findOthersRolesByUid(id);
     }
+
+    /**
+     * 向users_role 用户角色关联表插入信息
+     * @param userId
+     * @param roleId
+     */
+    @Override
+    public void addRoleToUser(String userId, String[] roleId) throws Exception {
+        for (String s : roleId) {
+            userDao.addRoleToUser(userId,s);
+        }
+    }
 }
