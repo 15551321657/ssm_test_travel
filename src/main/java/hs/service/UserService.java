@@ -23,4 +23,11 @@ public interface UserService extends UserDetailsService {
      * @throws Exception
      */
     void save(UserInfo userInfo) throws Exception;
+
+    /**
+     * 根据用户id 查询用户信息
+     * @param id
+     * @return
+     */
+    UserInfo findById(String id) throws Exception;
 }

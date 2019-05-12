@@ -74,4 +74,14 @@ public class UserServiceimpl implements UserService {
         userDao.save(userInfo);
 
     }
+
+    /**
+     * 根据用户id 查询用户详细信息
+     * @param id
+     * @return
+     */
+    @Override
+    public UserInfo findById(String id) throws Exception {
+        return userDao.findById(id);
+    }
 }

@@ -40,4 +40,20 @@ public class UserController {
 
         return "redirect:/user/findAll.do";
     }
+
+    /**
+     * 根据id查询用户详细信息
+     * @return
+     */
+    @RequestMapping("findById.do")
+    public ModelAndView findById(String id) throws Exception {
+        ModelAndView mv=new ModelAndView();
+        UserInfo userInfo=userService.findById(id);
+        mv.addObject("user",userInfo);
+        mv.setViewName("user-show1");
+
+        return mv;
+
+    }
+
 }

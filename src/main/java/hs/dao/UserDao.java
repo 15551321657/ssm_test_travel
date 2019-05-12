@@ -42,4 +42,20 @@ public interface UserDao {
 
     @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
     void save(UserInfo userInfo) throws Exception;
+
+    /**
+     * 根据用户id查询用户详细信息 包含用户所包含的角色以及权限信息
+     * @param id
+     * @return
+     */
+    @Select("select * from users where id = #{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(column = "username", property = "username"),
+            @Result(column = "email", property = "email"),
+            @Result(column = "password", property = "password"),
+            @Result(column = "phoneNum", property = "phoneNum"),
+            @Result(column = "status", property = "status"),
+            @Result(column = "id", property = "roles", javaType = List.class, many = @Many(select = "hs.dao.RoleDao.findRoleByUserId")) })
+    UserInfo findById(String id) throws Exception;
 }
