@@ -1,10 +1,7 @@
 package hs.dao;
 
 import hs.domain.Role;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +11,6 @@ import java.util.List;
  * @Date: 2019/5/11 18:17
  * @Version 1.0
  */
-@Repository("roleDao")
 public interface RoleDao {
     /**
      * 根据用户id 查询用户所拥有的角色 根据角色信息查询到权限信息
@@ -31,4 +27,18 @@ public interface RoleDao {
 
 
     public List<Role> findRoleByUserId(String userId);
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    @Select("select * from role")
+    List<Role> findAll() throws Exception;
+
+    /**
+     * 添加角色信息
+     * @param role
+     */
+    @Insert("insert into role(roleName,roleDesc) values(#{roleName},#{roleDesc})")
+    void save(Role role) throws Exception;
 }
